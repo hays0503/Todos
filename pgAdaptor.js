@@ -9,7 +9,7 @@ const config = {
   database: process.env.POSTGRES_DB,
   user: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
-  ssl: false,
+  ssl: true,
 };
 
 const db = pgp(config);
