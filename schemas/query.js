@@ -1,13 +1,18 @@
 const { db } = require("../pgAdaptor");
-const { GraphQLObjectType, GraphQLID } = require("graphql");
-const { UserType, ProjectType, TodosType } = require("./types");
+const {
+  GraphQLObjectType,
+  GraphQLID,
+  GraphQLNonNull,
+  GraphQLList,
+} = require("graphql");
+const { TodoType} = require("./types");
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   type: "Query",
   fields: {
     Todo: {
-      type: TodosType,
+      type: TodoType,
       args: { id: { type: GraphQLID } },
       resolve(parentValue, args) {
         const query = `SELECT todoid, workdesc, checking FROM public.todos WHERE todoid=$1`;
@@ -20,10 +25,16 @@ const RootQuery = new GraphQLObjectType({
       },
     },
     Todos: {
-      type: TodosType,
+      type: new GraphQLList(TodoType),
       resolve() {
-        const query = `SELECT todoid, workdesc, checking FROM public.todos`;
-        return db.manyOrNone(query);
+        const query = `SELECT * FROM public.todos`;
+        return db
+          .manyOrNone(query)
+          .then((res) => {
+            console.log(res);
+            return res[1];
+          })
+          .catch((err) => err);
       },
     },
   },

@@ -1,8 +1,8 @@
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLString } = graphql;
+const { GraphQLObjectType, GraphQLNonNull, GraphQLList } = graphql;
 
-const TodosType = new GraphQLObjectType({
-  name: "Todos",
+const TodoType = new GraphQLObjectType({
+  name: "Todo",
   type: "Query",
   fields: {
     todoid: { type: graphql.GraphQLID },
@@ -10,5 +10,15 @@ const TodosType = new GraphQLObjectType({
     checking: { type: graphql.GraphQLBoolean },
   },
 });
+// const TodosType = new GraphQLObjectType({
+//   name: "Todos",
+//   type: "Query",
+//   fields: {
+//     alltodos: {
+//       type: new GraphQLList(TodoType),
+//     },
+//   },
+// });
 
-exports.TodosType = TodosType;
+exports.TodoType = TodoType;
+// exports.TodosType = TodosType;

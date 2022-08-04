@@ -1,14 +1,14 @@
 const graphql = require("graphql");
 const db = require("../pgAdaptor").db;
 const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLBoolean } = graphql;
-const { ProjectType, TodosType } = require("./types");
+const { TodoType } = require("./types");
 
 const RootMutation = new GraphQLObjectType({
   name: "RootMutationType",
   type: "Mutation",
   fields: {
     addTodos: {
-      type: TodosType,
+      type: TodoType,
       args: {
         todoid: { type: graphql.GraphQLID },
         workdesc: { type: graphql.GraphQLString },
