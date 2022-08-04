@@ -21,10 +21,10 @@ const RootQuery = new GraphQLObjectType({
     },
     Todos: {
       type: TodosType,
-      resolve(parentValue) {
+      resolve() {
         const query = `SELECT todoid, workdesc, checking FROM public.todos`;
         return db
-          .one(query, values)
+          .one(query)
           .then((res) => res)
           .catch((err) => err);
       },
