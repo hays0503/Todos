@@ -23,10 +23,7 @@ const RootQuery = new GraphQLObjectType({
       type: TodosType,
       resolve() {
         const query = `SELECT todoid, workdesc, checking FROM public.todos`;
-        return db
-          .one(query)
-          .then((res) => res)
-          .catch((err) => err);
+        return db.manyOrNone(query);
       },
     },
   },
