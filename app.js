@@ -12,9 +12,14 @@ const schema = new GraphQLSchema({
 });
 
 var app = express();
-app.use('/graphql', graphqlHTTP({
+app.use(
+  "/graphql",
+  graphqlHTTP({
     schema: schema,
     graphiql: true,
-  }));
+  })
+);
 
-app.listen(process.env.PORT, () => console.log("GraphQL server running on localhost:3000"));
+app.listen(process.env.PORT | 3000, () =>
+  console.log("GraphQL server running on localhost:3000")
+);
