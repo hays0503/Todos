@@ -5,8 +5,8 @@ const TodosType = new GraphQLObjectType({
   name: "Todos",
   type: "Query",
   fields: {
-    todoId: { type: graphql.GraphQLID },
-    workDesc: { type: graphql.GraphQLString },
+    todoid: { type: graphql.GraphQLID },
+    workdesc: { type: graphql.GraphQLString },
     checking: { type: graphql.GraphQLBoolean },
   },
 });
