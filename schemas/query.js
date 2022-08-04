@@ -32,7 +32,7 @@ const RootQuery = new GraphQLObjectType({
           .manyOrNone(query)
           .then((res) => {
             console.log(res);
-            return res[1];
+            return res
           })
           .catch((err) => err);
       },
