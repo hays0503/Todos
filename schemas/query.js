@@ -10,7 +10,7 @@ const RootQuery = new GraphQLObjectType({
       type: TodosType,
       args: { id: { type: GraphQLID } },
       resolve(parentValue, args) {
-        const query = `SELECT * FROM todos WHERE todoId=$1`;
+        const query = `SELECT todoid, workdesc, checking FROM public.todos WHERE todoId=$1`;
         const values = [args.id];
 
         return db
@@ -18,7 +18,7 @@ const RootQuery = new GraphQLObjectType({
           .then((res) => res)
           .catch((err) => err);
       },
-    }
+    },
   },
 });
 
